@@ -1,0 +1,43 @@
+name: tgcc_client
+on:
+  push:
+    tags:
+      - "v*"   # 只有推送以 v 开头的 tag 时才触发，比如 v1.0.0
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: x86_64-pc-windows-msvc
+          override: true
+
+      - name: Build (Release)
+        run: cargo build --release --verbose
+
+      - name: Package binary
+        run: |
+          mkdir artifact
+          copy target\release\tgcc_client.exe artifact\
+          cd artifact
+          7z a ../tgcc_client-windows-x64.zip *
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: tgcc_client-windows-x64.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

